@@ -11,7 +11,8 @@ handgun5 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/mai
 handgun6 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataSep2nd2019ThroughDec1st2019HandgunIncidents.csv")
 legalDefenseByState <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/usDataOnLegalityOfDefense.csv")
 
-handgun11CombineAddress <- paste(handgun11$Address, handgun11$`City Or County`, handgun11$State, sep = ", ")
-handgun11$CombineAddress <- as.data.frame(handgun11CombineAddress)
+## combine the individual address, state/county, and state into one field
+tempDf <- paste(handgun11$Address, handgun11$`City Or County`, handgun11$State, sep = ", ")
+handgun11$CombineAddress <- as.data.frame(tempDf)  
 
 View(handgun11)
