@@ -1,7 +1,8 @@
 library(readr)
+library(dplyr)
 
 ##data importation
-handgun1 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataDec2nd2019ThroughDec31st2019HandgunIncidents.csv")
+handgun11 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataDec2nd2019ThroughDec31st2019HandgunIncidents.csv")
 rifle <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataJan1st2019ThroughDec31st2019RifleIncidents.csv")
 handgun2 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataJan1st2019ThroughMar1st2019HandgunIncidents.csv")
 handgun3 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataJul2nd2019ThroughSep1st2019HandgunIncidents.csv")
@@ -10,7 +11,7 @@ handgun5 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/mai
 handgun6 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataSep2nd2019ThroughDec1st2019HandgunIncidents.csv")
 legalDefenseByState <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/usDataOnLegalityOfDefense.csv")
 
+handgun11CombineAddress <- paste(handgun11$Address, handgun11$`City Or County`, handgun11$State, sep = ", ")
+handgun11$CombineAddress <- as.data.frame(handgun11CombineAddress)
 
-
-?rbind
-?merge
+View(handgun11)
