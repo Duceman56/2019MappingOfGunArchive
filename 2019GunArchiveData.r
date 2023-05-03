@@ -23,7 +23,8 @@ handgun3 <- subset(handgun3, select = c(Address, State))
 combinedTest <- rbind(handgun106, handgun103)
 
 ## combine the individual address, state/county, and state into one field
-tempDf <- paste(handgun11$Address, handgun11$`City Or County`, handgun11$State, sep = ", ")
-handgun11$CombineAddress <- as.data.frame(tempDf)  
+Address <- paste(handgun106$Address, handgun106$`City Or County`, handgun106$State, sep = ", ")
+handgun106 <- as.data.frame(Address)  
 
-View(handgun11)
+View(handgun106)
+
