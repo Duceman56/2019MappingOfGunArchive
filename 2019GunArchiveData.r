@@ -33,7 +33,7 @@ handgunTemp <- as.data.frame(wholeAddress) ## for whole handgun data set
 
 wholeAddressWi <- paste(wiHandgun$Address, wiHandgun$`City Or County`, wiHandgun$State, sep = ", ") ## for wisconsin handgun data set
 handgunWi <- as.data.frame(wholeAddressWi) ## for wisconsin handgun data set
-geocode_OSM(handgunWi$wholeAddressWi)
+geocodedWiHandgun <- geocode_OSM(handgunWi$wholeAddressWi)
 
 wholeAddress1 <- paste(handgun1$Address, handgun1$`City Or County`, handgun1$State, sep = ", ")
 handgunTemp1 <- as.data.frame(wholeAddress1)
@@ -60,4 +60,4 @@ handgun <- cbind(handgun, handgunTemp)
 geocoded <- geocode_OSM(handgunTemp$wholeAddress)
 geocodedWhole <- geocode_OSM(handgun$wholeAddress)
 
-# going to need to geocode based on each seperate csv file
+write_csv(handgun, file = "Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
