@@ -39,3 +39,5 @@ handgun <- cbind(handgun, handgunTemp)
 ## geocode portion
 geocoded <- geocode_OSM(handgunTemp$wholeAddress)
 geocodedWhole <- geocode_OSM(handgun$wholeAddress)
+
+# going to need to geocode based on each seperate csv file
