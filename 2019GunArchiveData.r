@@ -2,8 +2,6 @@ library(readr)
 library(dplyr)
 library(tmaptools)
 
-# citations
-
 ##data importation
 handgun1 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataDec2nd2019ThroughDec31st2019HandgunIncidents.csv")
 rifle <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataJan1st2019ThroughDec31st2019RifleIncidents.csv")
@@ -26,14 +24,12 @@ handgun6 <- handgun6[, 1:7]
 handgun <- rbind(handgun1, handgun2, handgun3, handgun4, handgun5, handgun6)
 wiHandgun <- subset(handgun, handgun$State == "Wisconsin")
 
-
 ## combine the individual address, state/county, and state into one field
 wholeAddress <- paste(handgun$Address, handgun$`City Or County`, handgun$State, sep = ", ") ## for whole handgun data set
 handgunTemp <- as.data.frame(wholeAddress) ## for whole handgun data set
 
 wholeAddressWi <- paste(wiHandgun$Address, wiHandgun$`City Or County`, wiHandgun$State, sep = ", ") ## for wisconsin handgun data set
 handgunWi <- as.data.frame(wholeAddressWi) ## for wisconsin handgun data set
-geocodedWiHandgun <- geocode_OSM(handgunWi$wholeAddressWi)
 
 wholeAddress1 <- paste(handgun1$Address, handgun1$`City Or County`, handgun1$State, sep = ", ")
 handgunTemp1 <- as.data.frame(wholeAddress1)
@@ -53,11 +49,16 @@ handgunTemp5 <- as.data.frame(wholeAddress5)
 wholeAddress6 <- paste(handgun6$Address, handgun6$`City Or County`, handgun6$State, sep = ", ")
 handgunTemp6 <- as.data.frame(wholeAddress6)
 
+wholeAddressRifle <- paste(rifle$Address, rifle$`City Or County`, rifle$State, sep = ", ")
+rifleTemp1 <- as.data.frame(wholeAddressRifle)
+
 ## add address to main handgun dataframe
 handgun <- cbind(handgun, handgunTemp)
+rifle <- cbind(rifle, rifleTemp1)
 
 ## geocode portion
 geocoded <- geocode_OSM(handgunTemp$wholeAddress)
 geocodedWhole <- geocode_OSM(handgun$wholeAddress)
 
-write_csv(handgun, file = "Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
+write_csv(handgun, file = "//Users//carsond//Desktop//handgun.csv") #"Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
+write_csv(rifle, file = "//Users//carsond//Desktop//rifle.csv")
