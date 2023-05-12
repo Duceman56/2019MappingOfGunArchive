@@ -9,7 +9,17 @@ In a time of politically charged debates surrounding the topic of the 2nd Amendm
 
 The 2nd Amendment reads: "A well regulated militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed." 
 
-When looking at the history of the United States, the word choice of the 2nd Amendment, and the  and the wording chosen in accordance with its time, this phrase reads to the individual and what they are allowed as their rights. 
+When looking at the history of the United States, the word choice of the 2nd Amendment, and the its time in history, many arguments are formed based on different interpretations of who the 2nd Amendment applies to. GCA arguments point out that the words like "regulated," "militia," and "security of a free State," offer reason to believe that the 2nd Amendment refers to a State's ability to form a militia, and regulate it to the States liking; of which the National Guards gets cited, a collective entity. 2AA arguments goes down the road that the 2nd Amendment targets the individual specifically and that an armed individual, and that a group of armed individuals make up a militia. 
+
+this phrase reads to the individual and what they are allowed as their rights. 
+
+## Background on Guns
+![this is captions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/handgunDeathsInUsa2019.png)
+
+```{r}
+
+
+```
 
 ## Data
 
