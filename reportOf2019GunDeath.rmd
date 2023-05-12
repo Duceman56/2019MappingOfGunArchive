@@ -5,10 +5,19 @@ date: "r.system"
 output: html_document
 ---
 ## Background
+In a time of politically charged debates surrounding the topic of the 2nd Amendment to the US Constitution, both sides with their arguments often stretch and bend the present data to fit their message. Generalizing, the two sides we currently see are gun control advocates (GCA) and the 2nd Amendment Advocates (2AA). The GCA aim to reduce gun violence by enacting red flag laws, require a federal universal background check of which to ensure that only law abiding citizens in good mental health have access to firearms and its accessories. The 2AA aim to allow firearm ownership to be practiced by law abiding citizens as is stated by the 2nd Amendment to the United States Constitution. 
+
+The 2nd Amendment reads: "A well regulated militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed." 
 
 ## Data
 
 ## Method
+
+## Results
+
+## Conclusion
+
+## References
 
 ```{r}
 library(readr)
