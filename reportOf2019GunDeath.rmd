@@ -9,12 +9,11 @@ In a time of politically charged debates surrounding the topic of the 2nd Amendm
 
 The 2nd Amendment reads: "A well regulated militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed." 
 
-When looking at the history of the United States, the word choice of the 2nd Amendment, and the its time in history, many arguments are formed based on different interpretations of who the 2nd Amendment applies to. GCA arguments point out that the words like "regulated," "militia," and "security of a free State," offer reason to believe that the 2nd Amendment refers to a State's ability to form a militia, and regulate it to the States liking; of which the National Guards gets cited, a collective entity. 2AA arguments goes down the road that the 2nd Amendment targets the individual specifically and that an armed individual (one), and that a group of armed individuals (many) make up a militia. Different points get brought up regarding the other Amendments that show up in the Bill of Rights. Highlighting the exercise that taking out the 2nd Amendment from the Bill of Rights and then re-reading the Bill of Rights show that all other Amendments attain to the individual citizen (Wilson Combat, 2022). 
+When looking at the history of the United States, the word choice of the 2nd Amendment, and the its time in history, many arguments are formed based on different interpretations of who the 2nd Amendment applies to. *GCA arguments point out that the words like "regulated," "militia," and "security of a free State," offer reason to believe that the 2nd Amendment refers to a State's ability to form a militia, and regulate it to the States liking; of which the National Guards gets cited, a collective entity.* 2AA arguments goes down the road that the 2nd Amendment targets the individual specifically and that an armed individual (one), and a group of armed individuals (many) make up a militia. Different points get brought up regarding the other Amendments that show up in the Bill of Rights. 2AA highlight an exercise that taking out the 2nd Amendment from the Bill of Rights and then re-reading the Bill of Rights show that all other Amendments attain to the individual citizen (Wilson Combat, 2022). The Supreme Court has heard cases surrounding this very debate in Heller vs. District of Columbia in 2008. 
 
-this phrase reads to the individual and what they are allowed as their rights. 
+To provide a brief background on the case, DC made it illegal to carry unregistered firearms, and also prohibited registration of handguns (unless through the chief of police issuing a license of which could be denied). Laws were put in placed that required registered firearms to be unloaded, disassembled, bound to a trigger lock to be rendered inoperable unless in a form of business or legal recreation. Heller worked as a special police officer that carried a handgun on duty but was denied by the chief of police when Heller went to apply for a license. After which, Heller sued DC arguing that they had "violated his Second Amendment right to keep a function firearm in his home without a license" (Oyez).
 
 ## Background on Guns
-![this is captions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/handgunDeathsInUsa2019.png)
 
 ```{r}
 
@@ -27,12 +26,16 @@ this phrase reads to the individual and what they are allowed as their rights.
 
 ## Results
 
+![this is captions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/handgunDeathsInUsa2019.png)
+
 ## Conclusion
 
 ## References
 Willingham, AJ. “27 Words: Deconstructing the Second Amendment.” CNN, March 28, 2018. https://www.cnn.com/2016/08/10/politics/what-does-the-second-amendment-actually-mean-trnd/index.html. 
 
 Short answers against Gun Control &amp; how to defend the 2nd Amendment. Critical Mas EP47. YouTube. Wilson Combat, 2022. https://www.youtube.com/watch?v=pHRZhS8GTc0&amp;t=589s&amp;ab_channel=WilsonCombat. 
+
+"District of Columbia v. Heller." Oyez. Accessed May 12, 2023. https://www.oyez.org/cases/2007/07-290.
 
 ```{r}
 library(readr)
