@@ -25,7 +25,7 @@ This portion highlights step by step instructions of what parameters were utiliz
 When in the GVA's website, searching the database can be found here: https://www.gunviolencearchive.org/query. 
 
 ##### 1. 
-Starting off with the default settings, click "Add a rule" to enable the first parameter to be applied. Using the scroll bar, scroll to where "Guns" appear and select it. Within the "Guns" rule, select the middle box to be (if its not already) "contains" and select the third box to be whichever class of firearms one may desire. 
+Starting off with the default settings, click "Add a rule" to enable the first parameter to be applied. Using the scroll bar, scroll to where "Guns" appear and select it. Within the "Guns" rule, select the middle box to be (if its not already) "contains" and select the third box to be whichever class of firearms one may desire. Select "Add a rule" again and select "Date." Within the "Date" rule, be sure the middle box is set to "is in" and the "From" and "To" box are set to the desired 
 
 ```{r}
 
