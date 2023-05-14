@@ -1,7 +1,7 @@
 ---
 title: "Gun Deaths in the United States, 2019"
 author: "Carson Duce"
-date: "`r.system`"
+date: '`r Sys.Date()`'
 output: html_document
 ---
 ## Background
@@ -15,13 +15,17 @@ To provide a brief background on the case, DC made it illegal to carry unregiste
 
 The conclusion that the majority came to held onto the individual notion of the citizen being able to keep and bear arms, not the military. A main reasoning was since it "...would be to create exactly the type of state-sponsored force against which the Amendment was meant to protect people" (Oyez). 
 
+## Data
+This project derived its data from the Gun Violence Archive (GVA), an independent research and data collection organization. GVA utilizing various autonomous data collection methods that collects from "...7,500+ sources from local and state police, media, data aggregates, government and other sources daily" (Gun Violence Archive, 2022). Utilizing processes of verifying reports through an initial researcher, and another secondary validation system, the GVA organization seeks to provide accurate and readily accessible data to further the discussion on gun violence (Gun Violence Archive, 2022). Collecting data was simple through GVA's website, https://www.gunviolencearchive.org/, that saw a query search option for its records. 
+
+### Data Acquisition
+This portion highlights step by step instructions of what parameters were utilized, 
+
 
 ```{r}
 
 
 ```
-
-## Data
 
 ## Method
 
@@ -37,11 +41,16 @@ The conclusion that the majority came to held onto the individual notion of the 
 ## Conclusion
 
 ## References
-Willingham, AJ. “27 Words: Deconstructing the Second Amendment.” CNN, March 28, 2018. https://www.cnn.com/2016/08/10/politics/what-does-the-second-amendment-actually-mean-trnd/index.html. 
+"District of Columbia v. Heller." Oyez. Accessed May 12, 2023. https://www.oyez.org/cases/2007/07-290.
+
+“Gun Violence Archive.” Gun Violence Archive, January 1, 2022. https://www.gunviolencearchive.org/explainer. 
+
+R Core Team (2023). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
 Short answers against Gun Control &amp; how to defend the 2nd Amendment. Critical Mas EP47. YouTube. Wilson Combat, 2022. https://www.youtube.com/watch?v=pHRZhS8GTc0&amp;t=589s&amp;ab_channel=WilsonCombat. 
 
-"District of Columbia v. Heller." Oyez. Accessed May 12, 2023. https://www.oyez.org/cases/2007/07-290.
+Willingham, AJ. “27 Words: Deconstructing the Second Amendment.” CNN, March 28, 2018. https://www.cnn.com/2016/08/10/politics/what-does-the-second-amendment-actually-mean-trnd/index.html. 
+
 
 ```{r}
 library(readr)
