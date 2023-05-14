@@ -1,7 +1,7 @@
 ---
 title: "Gun Deaths in the United States, 2019"
 author: "Carson Duce"
-date: "r.system"
+date: "`r.system`"
 output: html_document
 ---
 ## Background
@@ -11,9 +11,10 @@ The 2nd Amendment reads: "A well regulated militia, being necessary to the secur
 
 When looking at the history of the United States, the word choice of the 2nd Amendment, and the its time in history, many arguments are formed based on different interpretations of who the 2nd Amendment applies to. *GCA arguments point out that the words like "regulated," "militia," and "security of a free State," offer reason to believe that the 2nd Amendment refers to a State's ability to form a militia, and regulate it to the States liking; of which the National Guards gets cited, a collective entity.* 2AA arguments goes down the road that the 2nd Amendment targets the individual specifically and that an armed individual (one), and a group of armed individuals (many) make up a militia. Different points get brought up regarding the other Amendments that show up in the Bill of Rights. 2AA highlight an exercise that taking out the 2nd Amendment from the Bill of Rights and then re-reading the Bill of Rights show that all other Amendments attain to the individual citizen (Wilson Combat, 2022). The Supreme Court has heard cases surrounding this very debate in Heller vs. District of Columbia in 2008. 
 
-To provide a brief background on the case, DC made it illegal to carry unregistered firearms, and also prohibited registration of handguns (unless through the chief of police issuing a license of which could be denied). Laws were put in placed that required registered firearms to be unloaded, disassembled, bound to a trigger lock to be rendered inoperable unless in a form of business or legal recreation. Heller worked as a special police officer that carried a handgun on duty but was denied by the chief of police when Heller went to apply for a license. After which, Heller sued DC arguing that they had "violated his Second Amendment right to keep a function firearm in his home without a license" (Oyez).
+To provide a brief background on the case, DC made it illegal to carry unregistered firearms, and also prohibited registration of handguns (unless through the chief of police issuing a license of which could be denied). Laws were put in placed that required registered firearms to be unloaded, disassembled, bound to a trigger lock to be rendered inoperable unless in a form of business or legal recreation. Heller worked as a special police officer that carried a handgun on duty but was denied by the chief of police when Heller went to apply for a license. After which, Heller sued DC arguing that they had "violated his Second Amendment right to keep a function firearm in his home without a license" (Oyez). After hearing arguments in court, the Supreme Court Justices came to a 5 - 4 majority in declaring the DC's laws surrounding the permitting process and storage laws violated the 2nd Amendment. Justice Antonin Scalia would give the opinion of the court in a lengthy manner characterizing the history that the Amendment was written in, and how its current implementations relate to today.  
 
-## Background on Guns
+The conclusion that the majority came to held onto the individual notion of the citizen being able to keep and bear arms, not the military. A main reasoning was since it "...would be to create exactly the type of state-sponsored force against which the Amendment was meant to protect people" (Oyez). 
+
 
 ```{r}
 
@@ -27,6 +28,11 @@ To provide a brief background on the case, DC made it illegal to carry unregiste
 ## Results
 
 ![this is captions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/handgunDeathsInUsa2019.png)
+
+![this is captions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/rifleDeathsInUsa2019.png)
+
+![this is captions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/shotgunDeathsInUsa2019.png)
+
 
 ## Conclusion
 
@@ -140,7 +146,7 @@ str(shotgun)
 
 ## write new csv to dedicated locations
 ```{r}
-write_csv(handgun, file = "//Users//carsond//Desktop//handgun.csv") #"Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
-write_csv(rifle, file = "//Users//carsond//Desktop//rifle.csv")
-write_csv(shotgun, file = "//Users//carsond//Desktop//shotgun.csv")
+## write_csv(handgun, file = "//Users//carsond//Desktop//handgun.csv") #"Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
+## write_csv(rifle, file = "//Users//carsond//Desktop//rifle.csv")
+## write_csv(shotgun, file = "//Users//carsond//Desktop//shotgun.csv")
 ```
