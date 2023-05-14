@@ -4,15 +4,14 @@ library(tmaptools)
 library(ggplot2)
 
 ##data importation
-handgun1 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataDec2nd2019ThroughDec31st2019HandgunIncidents.csv")
-rifle <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataJan1st2019ThroughDec31st2019RifleIncidents.csv")
-handgun2 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataJan1st2019ThroughMar1st2019HandgunIncidents.csv")
-handgun3 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataJul2nd2019ThroughSep1st2019HandgunIncidents.csv")
-handgun4 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataMar2nd2019ThroughMay1st2019HandgunIncidents.csv")
-handgun5 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataMay2nd2019ThroughJul1st2019HandgunIncidents.csv")
-handgun6 <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunArchiveDataSep2nd2019ThroughDec1st2019HandgunIncidents.csv")
-legalDefenseByState <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/usDataOnLegalityOfDefense.csv")
-shotgun <- read_csv("https://raw.githubusercontent.com/Duceman56/PublicData/main/gunViolenceJan1stThroughDec31stShotgunIncidents.csv")
+handgun1 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVADec2nd2019ThroughDec31st2019HandgunIncidents.csv")
+rifle <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1st2019ThroughDec31st2019RifleIncidents.csv")
+handgun2 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1st2019ThroughMar1st2019HandgunIncidents.csv")
+handgun3 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJul2nd2019ThroughSep1st2019HandgunIncidents.csv")
+handgun4 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAMar2nd2019ThroughMay1st2019HandgunIncidents.csv")
+handgun5 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAMay2nd2019ThroughJul1st2019HandgunIncidents.csv")
+handgun6 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVASep2nd2019ThroughDec1st2019HandgunIncidents.csv")
+shotgun <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1stThroughDec31stShotgunIncidents.csv")
 
 # select only wanted columns
 handgun1 <- handgun1[, 1:7]
@@ -25,7 +24,6 @@ shotgun <- shotgun[, 1:7]
 
 # combine the handgun data frames into one large data frame
 handgun <- rbind(handgun1, handgun2, handgun3, handgun4, handgun5, handgun6)
-wiHandgun <- subset(handgun, handgun$State == "Wisconsin")
 
 ## combine the individual address, state/county, and state into one field
 wholeAddress <- paste(handgun$Address, handgun$`City Or County`, handgun$State, sep = ", ") ## for whole handgun data set
