@@ -24,17 +24,17 @@ This portion highlights step by step instructions of what parameters were utiliz
 #### 1: Query Search
 When in the GVA's website, searching the database can be found here: https://www.gunviolencearchive.org/query. Starting off with the default settings, click "Add a rule" to enable the first parameter to be applied. Using the scroll bar, scroll to where "Guns" appear and select it. Within the "Guns" rule, select the middle box to be (if its not already) "contains" and select the third box to be whichever class of firearms one may desire. Select "Add a rule" again and select "Date." Within the "Date" rule, be sure the middle box is set to "is in" and the "From" and "To" box are set to the desired range (see image 1.0).
 
-![Insert image 1.0 here of the query search]()
+![Image 1.0: GVA Query Search](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/image1%2C0.JPG)
 
 When ready with all parameters entered, select "Save" to pull up the results. During query searching, GVA's website limits query search's to a maximum of 80 pages for each search (see image 1.1 for example). The date range may need to be reconfigured to ensure that all records are being gathered. When it has been determined that the query search has been successful, select "Export as CSV" to save the file in a comma seperated file format. Good file labeling helps with this step. 
 
-![Insert image 1.1 here of the last page of search, notice when "last" is selected we only get to page 68]()
+![Image 1.1: Last page of search, notice when "last" is selected we only get to page 68](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/image1%2C1Example.JPG)
 
 For this project, all three class of firearms were query searched for. Rifle and shotgun saw all incidents combined into their own seperate CSV file; one file for rifle and one file for shotgun. Incidents involving handguns would require six separate CSV files for all to be accounted for properly. Image 1.2 shows the naming convention of the separate CSV files.
 
-![Inset image 1.2 here of the naming convention]()
+![Image 1.2: Naming Conventions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/image1%2C2FileNaming.JPG)
 
-After all CSV files have been downloaded and loaded into a known folder somewhere open up RStudio. 
+After all CSV files have been downloaded and loaded into a known folder somewhere, open up RStudio. 
 
 #### 2: Loading data into RStudio 
 Loading data will take place in the form of scripting and storing the CSV file as a data frame inside RStudio. Utilizing the package "readr", this package will give us the ability to read and write to files in a neater fashion.
@@ -118,7 +118,7 @@ write_csv(shotgun, file = "Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DU
 *With our exported CSV files in a folder on our machine, open up ArcGIS Pro and sign in with your account. Create a new map project, name and store it in the same folder as the exported CSV files are located. Load up the main base map and open up the geoprocessing toolbox in the Analysis tab.* In the search bar, type in "geocoding." Side note, this processing takes 40 credits per 1,000 addresses geocoded. When buying credits on ESRI's website, 1000 credits cost $120.  
 
 ## Results
-
+The maps produced include four total maps
 
 ## summary statistics
 ```{r}
