@@ -19,28 +19,127 @@ The conclusion that the majority came to held onto the individual notion of the 
 This project derived its data from the Gun Violence Archive (GVA), an independent research and data collection organization. GVA utilizing various autonomous data collection methods that collects from "...7,500+ sources from local and state police, media, data aggregates, government and other sources daily" (Gun Violence Archive, 2022). Utilizing processes of verifying reports through an initial researcher, and another secondary validation system, the GVA organization seeks to provide accurate and readily accessible data to further the discussion on gun violence (Gun Violence Archive, 2022). Collecting data was simple through GVA's website, https://www.gunviolencearchive.org/, that saw a query search option for its records. 
 
 ### Data Acquisition
-This portion highlights step by step instructions of what parameters were utilized in the query search of GVA, the process of using R: A language and environment for statistical computing for working with the data to create a csv file to then be used for geocoding in ESRI's ArcGIS Pro.  
+This portion highlights step by step instructions of what parameters were utilized in the query search of GVA, the process of using R: A language and environment for statistical computing for working with the data to create a comma separated value (CSV) file to then be used for geocoding in ESRI's ArcGIS Pro.  
 
-#### Query Search
-When in the GVA's website, searching the database can be found here: https://www.gunviolencearchive.org/query. 
-
-##### 1. 
-Starting off with the default settings, click "Add a rule" to enable the first parameter to be applied. Using the scroll bar, scroll to where "Guns" appear and select it. Within the "Guns" rule, select the middle box to be (if its not already) "contains" and select the third box to be whichever class of firearms one may desire. Select "Add a rule" again and select "Date." Within the "Date" rule, be sure the middle box is set to "is in" and the "From" and "To" box are set to the desired range (see images 1.0).
+#### 1: Query Search
+When in the GVA's website, searching the database can be found here: https://www.gunviolencearchive.org/query. Starting off with the default settings, click "Add a rule" to enable the first parameter to be applied. Using the scroll bar, scroll to where "Guns" appear and select it. Within the "Guns" rule, select the middle box to be (if its not already) "contains" and select the third box to be whichever class of firearms one may desire. Select "Add a rule" again and select "Date." Within the "Date" rule, be sure the middle box is set to "is in" and the "From" and "To" box are set to the desired range (see image 1.0).
 
 ![Insert image 1.0 here of the query search]()
 
-When ready with all parameters enetered, select "Save" to pull up the results. During query searching, GVA's website limits query search's to a maximum of 80 pages for each search. The date range may need to be tested and reconfigured to ensure that all records are being gathered. 
+When ready with all parameters entered, select "Save" to pull up the results. During query searching, GVA's website limits query search's to a maximum of 80 pages for each search (see image 1.1 for example). The date range may need to be reconfigured to ensure that all records are being gathered. When it has been determined that the query search has been successful, select "Export as CSV" to save the file in a comma seperated file format. Good file labeling helps with this step. 
 
+![Insert image 1.1 here of the last page of search, notice when "last" is selected we only get to page 68]()
 
+For this project, all three class of firearms were query searched for. Rifle and shotgun saw all incidents combined into their own seperate CSV file; one file for rifle and one file for shotgun. Incidents involving handguns would require six separate CSV files for all to be accounted for properly. Image 1.2 shows the naming convention of the separate CSV files.
+
+![Inset image 1.2 here of the naming convention]()
+
+After all CSV files have been downloaded and loaded into a known folder somewhere open up RStudio. 
+
+#### 2: Loading data into RStudio 
+Loading data will take place in the form of scripting and storing the CSV file as a data frame inside RStudio. Utilizing the package "readr", this package will give us the ability to read and write to files in a neater fashion.
+
+```{r, echo = F}
+knitr::opts_chunk$set(message = F, warning = F)
+```
 
 ```{r}
-
+library(readr) ## used to read in and write to a csv file
 
 ```
 
+The following code shows what variables the CSV files are being stored into. The file path used in this example is from the Github repository, 2019MappingOfGunArchive found here in the data folder: https://github.com/Duceman56/2019MappingOfGunArchive. The file path can also be a folder path on ones Windows or MacOS machine.  
+```{r}
+handgun1 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVADec2nd2019ThroughDec31st2019HandgunIncidents.csv")
+handgun2 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1st2019ThroughMar1st2019HandgunIncidents.csv")
+handgun3 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJul2nd2019ThroughSep1st2019HandgunIncidents.csv")
+handgun4 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAMar2nd2019ThroughMay1st2019HandgunIncidents.csv")
+handgun5 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAMay2nd2019ThroughJul1st2019HandgunIncidents.csv")
+handgun6 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVASep2nd2019ThroughDec1st2019HandgunIncidents.csv")
+rifle <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1st2019ThroughDec31st2019RifleIncidents.csv")
+shotgun <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1stThroughDec31stShotgunIncidents.csv")
+
+```
+
+
 ## Method
+With the CSV files now loaded into working data frames, the objective is to create a new column that has the whole address on one line, and clean the data frames up to allow for all the handgun variables to be combined into one large "handgun" data frame to then be exported. After viewing each of the data frames, the main columns that will be preserved will be columns one through seven: 
+
+```{r}
+handgun1 <- handgun1[, 1:7]
+handgun2 <- handgun2[, 1:7]
+handgun3 <- handgun3[, 1:7]
+handgun4 <- handgun4[, 1:7]
+handgun5<- handgun5[, 1:7]
+handgun6 <- handgun6[, 1:7]
+rifle <- rifle[, 1:7]
+shotgun <- shotgun[, 1:7]
+
+```
+
+Now that all the handgun variables have the same number of columns desired and includes only the wanted data, the following code will take all the handgun variables and produce the "handgun" data set:
+```{r}
+handgun <- rbind(handgun1, handgun2, handgun3, handgun4, handgun5, handgun6)
+
+```
+
+With the new "handgun" data set, the addresses where each incident took place at are seperated into three seperate columns, "Address," "City or County," and "State." The column "wholeAddress" is created that combines all three columns separated by a comma. Afterwards, we are required to force "wholeAddress" into being a temporary data frame called "handgunTemp":
+```{r}
+wholeAddress <- paste(handgun$Address, handgun$`City Or County`, handgun$State, sep = ", ")
+handgunTemp <- as.data.frame(wholeAddress)
+
+wholeAddressRifle <- paste(rifle$Address, rifle$`City Or County`, rifle$State, sep = ", ")
+rifleTemp1 <- as.data.frame(wholeAddressRifle)
+
+wholeAddressShotgun <- paste(shotgun$Address, shotgun$`City Or County`, shotgun$State, sep = ", ")
+shotgunTemp1 <- as.data.frame(wholeAddressShotgun)
+```
+
+With each data frame now having their addresses in one column, combining the temporary data frame into the main data frame occurs: 
+```{r}
+handgun <- cbind(handgun, handgunTemp)
+rifle <- cbind(rifle, rifleTemp1)
+shotgun <- cbind(shotgun, shotgunTemp1)
+```
+
+Now that all the data frames are adequate to move forward, writing the new data frames to a separate CSV file takes place. The file path will need to be located someplace on ones computer: 
+```{r, eval = F}
+## for MacOS machines
+write_csv(handgun, file = "//Users//carsond//Desktop//handgun.csv")
+write_csv(rifle, file = "//Users//carsond//Desktop//rifle.csv")
+write_csv(shotgun, file = "//Users//carsond//Desktop//shotgun.csv")
+
+## for Window machines
+write_csv(handgun, file = "Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv") 
+write_csv(rifle, file = "Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
+write_csv(shotgun, file = "Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
+```
+
+*With our exported CSV files in a folder on our machine, open up ArcGIS Pro and sign in with your account. Create a new map project, name and store it in the same folder as the exported CSV files are located. Load up the main base map and open up the geoprocessing toolbox in the Analysis tab.* In the search bar, type in "geocoding." Side note, this processing takes 40 credits per 1,000 addresses geocoded. When buying credits on ESRI's website, 1000 credits cost $120.  
 
 ## Results
+
+
+## summary statistics
+```{r}
+sum(handgun$`# Killed`)
+sum(handgun$`# Injured`)
+str(handgun)
+(sum(handgun$`# Killed`)/8035)
+(sum(handgun$`# Injured`)/8035)
+
+sum(rifle$`# Killed`)
+sum(rifle$`# Injured`)
+str(rifle)
+(sum(rifle$`# Killed`)/1697)
+(sum(rifle$`# Injured`)/1697)
+
+sum(shotgun$`# Victims Killed`)
+sum(shotgun$`# Victims Injured`)
+str(shotgun)
+(sum(shotgun$`# Victims Killed`)/1038)
+(sum(shotgun$`# Victims Injured`)/1038)
+```
 
 ![this is captions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/handgunDeathsInUsa2019.png)
 
@@ -62,108 +161,3 @@ Short answers against Gun Control &amp; how to defend the 2nd Amendment. Critica
 
 Willingham, AJ. “27 Words: Deconstructing the Second Amendment.” CNN, March 28, 2018. https://www.cnn.com/2016/08/10/politics/what-does-the-second-amendment-actually-mean-trnd/index.html. 
 
-
-```{r}
-library(readr)
-library(dplyr)
-library(tmaptools)
-```
-
-
-## Data Importation
-```{r}
-
-##data importation
-handgun1 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVADec2nd2019ThroughDec31st2019HandgunIncidents.csv")
-rifle <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1st2019ThroughDec31st2019RifleIncidents.csv")
-handgun2 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1st2019ThroughMar1st2019HandgunIncidents.csv")
-handgun3 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJul2nd2019ThroughSep1st2019HandgunIncidents.csv")
-handgun4 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAMar2nd2019ThroughMay1st2019HandgunIncidents.csv")
-handgun5 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAMay2nd2019ThroughJul1st2019HandgunIncidents.csv")
-handgun6 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVASep2nd2019ThroughDec1st2019HandgunIncidents.csv")
-shotgun <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1stThroughDec31stShotgunIncidents.csv")
-
-```
-
-## select only wanted columns
-```{r}
-handgun1 <- handgun1[, 1:7]
-handgun2 <- handgun2[, 1:7]
-handgun3 <- handgun3[, 1:7]
-handgun4 <- handgun4[, 1:7]
-handgun5<- handgun5[, 1:7]
-handgun6 <- handgun6[, 1:7]
-shotgun <- shotgun[, 1:7]
-```
-
-## Combine the handgun data frames into one large data frame
-```{r}
-handgun <- rbind(handgun1, handgun2, handgun3, handgun4, handgun5, handgun6)
-
-```
-
-## combine the individual address, state/county, and state into one field
-```{r}
-wholeAddress <- paste(handgun$Address, handgun$`City Or County`, handgun$State, sep = ", ") ## for whole handgun data set
-handgunTemp <- as.data.frame(wholeAddress) ## for whole handgun data set
-
-wholeAddress1 <- paste(handgun1$Address, handgun1$`City Or County`, handgun1$State, sep = ", ")
-handgunTemp1 <- as.data.frame(wholeAddress1)
-
-wholeAddress2 <- paste(handgun2$Address, handgun2$`City Or County`, handgun2$State, sep = ", ")
-handgunTemp2 <- as.data.frame(wholeAddress2)
-
-wholeAddress3 <- paste(handgun3$Address, handgun3$`City Or County`, handgun3$State, sep = ", ")
-handgunTemp3 <- as.data.frame(wholeAddress3)
-
-wholeAddress4 <- paste(handgun4$Address, handgun4$`City Or County`, handgun4$State, sep = ", ")
-handgunTemp4 <- as.data.frame(wholeAddress4)
-
-wholeAddress5 <- paste(handgun5$Address, handgun5$`City Or County`, handgun5$State, sep = ", ")
-handgunTemp5 <- as.data.frame(wholeAddress5)
-
-wholeAddress6 <- paste(handgun6$Address, handgun6$`City Or County`, handgun6$State, sep = ", ")
-handgunTemp6 <- as.data.frame(wholeAddress6)
-
-wholeAddressRifle <- paste(rifle$Address, rifle$`City Or County`, rifle$State, sep = ", ")
-rifleTemp1 <- as.data.frame(wholeAddressRifle)
-
-wholeAddressShotgun <- paste(shotgun$Address, shotgun$`City Or County`, shotgun$State, sep = ", ")
-shotgunTemp1 <- as.data.frame(wholeAddressShotgun)
-```
-
-## add address to main handgun, rifles, and shotgun dataframe
-```{r}
-handgun <- cbind(handgun, handgunTemp)
-rifle <- cbind(rifle, rifleTemp1)
-shotgun <- cbind(shotgun, shotgunTemp1)
-```
-
-## geocode portion
-```{r}
-## geocoded <- geocode_OSM(handgunTemp$wholeAddress)
-## geocodedWhole <- geocode_OSM(handgun$wholeAddress)
-```
-
-## summary statistics
-```{r}
-sum(handgun$`# Killed`)
-sum(handgun$`# Injured`)
-str(handgun)
-
-sum(rifle$`# Killed`)
-sum(rifle$`# Injured`)
-str(rifle)
-
-sum(shotgun$`# Victims Killed`)
-sum(shotgun$`# Victims Injured`)
-str(shotgun)
-```
-
-
-## write new csv to dedicated locations
-```{r}
-## write_csv(handgun, file = "//Users//carsond//Desktop//handgun.csv") #"Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
-## write_csv(rifle, file = "//Users//carsond//Desktop//rifle.csv")
-## write_csv(shotgun, file = "//Users//carsond//Desktop//shotgun.csv")
-```
