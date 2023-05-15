@@ -25,7 +25,13 @@ This portion highlights step by step instructions of what parameters were utiliz
 When in the GVA's website, searching the database can be found here: https://www.gunviolencearchive.org/query. 
 
 ##### 1. 
-Starting off with the default settings, click "Add a rule" to enable the first parameter to be applied. Using the scroll bar, scroll to where "Guns" appear and select it. Within the "Guns" rule, select the middle box to be (if its not already) "contains" and select the third box to be whichever class of firearms one may desire. Select "Add a rule" again and select "Date." Within the "Date" rule, be sure the middle box is set to "is in" and the "From" and "To" box are set to the desired 
+Starting off with the default settings, click "Add a rule" to enable the first parameter to be applied. Using the scroll bar, scroll to where "Guns" appear and select it. Within the "Guns" rule, select the middle box to be (if its not already) "contains" and select the third box to be whichever class of firearms one may desire. Select "Add a rule" again and select "Date." Within the "Date" rule, be sure the middle box is set to "is in" and the "From" and "To" box are set to the desired range (see images 1.0).
+
+![Insert image 1.0 here of the query search]()
+
+When ready with all parameters enetered, select "Save" to pull up the results. During query searching, GVA's website limits query search's to a maximum of 80 pages for each search. The date range may need to be tested and reconfigured to ensure that all records are being gathered. 
+
+
 
 ```{r}
 
@@ -100,9 +106,6 @@ handgun <- rbind(handgun1, handgun2, handgun3, handgun4, handgun5, handgun6)
 ```{r}
 wholeAddress <- paste(handgun$Address, handgun$`City Or County`, handgun$State, sep = ", ") ## for whole handgun data set
 handgunTemp <- as.data.frame(wholeAddress) ## for whole handgun data set
-
-wholeAddressWi <- paste(wiHandgun$Address, wiHandgun$`City Or County`, wiHandgun$State, sep = ", ") ## for wisconsin handgun data set
-handgunWi <- as.data.frame(wholeAddressWi) ## for wisconsin handgun data set
 
 wholeAddress1 <- paste(handgun1$Address, handgun1$`City Or County`, handgun1$State, sep = ", ")
 handgunTemp1 <- as.data.frame(wholeAddress1)
