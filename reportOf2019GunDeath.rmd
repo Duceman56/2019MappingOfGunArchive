@@ -15,6 +15,8 @@ To provide a brief background on the case, DC made it illegal to carry unregiste
 
 The conclusion that the majority came to held onto the individual notion of the citizen being able to keep and bear arms, not the military. A main reasoning was since it "...would be to create exactly the type of state-sponsored force against which the Amendment was meant to protect people" (Oyez). 
 
+When looking at the States legal code, many different states have different laws when it comes to using deadly force (force that can lead to the physical harm or death of a person) during self defense. The three main classifications that states tend to portray themselves are Duty to Retreat, Castle Doctrine, or Stand Your Ground language in their legal code. The same definition provided here will be the same definitions displayed on the finished maps in the "Results" section of this report. Duty to retreat has language that states that a person who is under an imminent threat of personal harm must make a reasonable effort to avoid confrontation; de-escalation or leave the area of the threat. Stand your ground has language that allows armed individuals who believe they are in imminent danger to uyse deadly force without first attempting to retreat from the danger. Castle Doctrine has language which is similar to stand your grtound and it typically limimted to a home, property, and in some states, cars. The concept that an indiviudal has a right to be safe/secure within his/her home (castle) and should not ahve to retreat from home in order to be safe. 
+
 ## Data
 This project derived its data from the Gun Violence Archive (GVA), an independent research and data collection organization. GVA utilizing various autonomous data collection methods that collects from "...7,500+ sources from local and state police, media, data aggregates, government and other sources daily" (Gun Violence Archive, 2022). Utilizing processes of verifying reports through an initial researcher, and another secondary validation system, the GVA organization seeks to provide accurate and readily accessible data to further the discussion on gun violence (Gun Violence Archive, 2022). Collecting data was simple through GVA's website, https://www.gunviolencearchive.org/, that saw a query search option for its records. 
 
@@ -83,7 +85,7 @@ handgun <- rbind(handgun1, handgun2, handgun3, handgun4, handgun5, handgun6)
 
 ```
 
-With the new "handgun" data set, the addresses where each incident took place at are seperated into three seperate columns, "Address," "City or County," and "State." The column "wholeAddress" is created that combines all three columns separated by a comma. Afterwards, we are required to force "wholeAddress" into being a temporary data frame called "handgunTemp":
+With the new "handgun" data set, the addresses where each incident took place at are separated into three separate columns, "Address," "City or County," and "State." The column "wholeAddress" is created that combines all three columns separated by a comma. Afterwards, we are required to force "wholeAddress" into being a temporary data frame called "handgunTemp":
 ```{r}
 wholeAddress <- paste(handgun$Address, handgun$`City Or County`, handgun$State, sep = ", ")
 handgunTemp <- as.data.frame(wholeAddress)
@@ -115,7 +117,15 @@ write_csv(rifle, file = "Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCE
 write_csv(shotgun, file = "Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
 ```
 
-*With our exported CSV files in a folder on our machine, open up ArcGIS Pro and sign in with your account. Create a new map project, name and store it in the same folder as the exported CSV files are located. Load up the main base map and open up the geoprocessing toolbox in the Analysis tab.* In the search bar, type in "geocoding." Side note, this processing takes 40 credits per 1,000 addresses geocoded. When buying credits on ESRI's website, 1000 credits cost $120.  
+With our exported CSV files in a folder on our machine, open up ArcGIS Pro and sign in with your account. Create a new map project, name and store it in the same folder as the exported CSV files are located. Load up the main base map in ArcGIS Pro and within the "Analysis" tab, click "Tools" to open up the geoprocessing tools. In the search bar, type in "geocoding." Side note, this processing takes 40 credits per 1,000 addresses geocoded. When buying credits on ESRI's website, 1000 credits cost $120. When working with the geocoding tool, for "Input Table," click the yellow folder and find the first exported CSV file to be geocoded; click "OK." For "Input Address Locator, the default ESRI locator will be used. Click the yellow folder and find where it says "Project" on the left side of the window and click into the "Locators" folder (see image 2.0). Select the "ArcGIS World Geocoding Service" and select "OK." For "Input Address Fields" change it from "Multiple Field" to "Single Field" and find the column "wholeAddress" in the "Single Line Input" box. For the country, check the box that says "United States" and ensure that "Preferred Location Type" is set to "Address location." When all is done the geocoding tool should be set up similar to what image 2.1 looks like.
+
+![Image 2.0: Finding the Address Locator](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/image2%2C0FindingLocator.JPG)
+
+![Image 2.1: Final Setup of Geocoding Tool](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/iamge2%2C1GeocodingTool.JPG)
+
+With a new layer in the "Contents" pane of the geocoded addresses, graduate colors was chosen for the symbology of how the data will be classified and mapped. Final results for the maps will be shown in the "Results" section of this report.
+
+Within this map, the States themselves will also be color coded to portray a states legal status 
 
 ## Results
 The maps produced include four total maps
