@@ -1,7 +1,7 @@
 ---
-title: "Gun Deaths in the United States, 2019"
+title: "Gun Deaths in the United States Utilizing Gun Violence Archive Data, 2019"
 author: "Carson Duce"
-date: '`r Sys.Date()`'
+date: '5/16/2023'
 output: html_document
 ---
 ## Background
@@ -9,7 +9,7 @@ In a time of politically charged debates surrounding the topic of the 2nd Amendm
 
 The 2nd Amendment reads: "A well regulated militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed." 
 
-When looking at the history of the United States, the word choice of the 2nd Amendment, and the its time in history, many arguments are formed based on different interpretations of who the 2nd Amendment applies to. *GCA arguments point out that the words like "regulated," "militia," and "security of a free State," offer reason to believe that the 2nd Amendment refers to a State's ability to form a militia, and regulate it to the States liking; of which the National Guards gets cited, a collective entity.* 2AA arguments goes down the road that the 2nd Amendment targets the individual specifically and that an armed individual (one), and a group of armed individuals (many) make up a militia. Different points get brought up regarding the other Amendments that show up in the Bill of Rights. 2AA highlight an exercise that taking out the 2nd Amendment from the Bill of Rights and then re-reading the Bill of Rights show that all other Amendments attain to the individual citizen (Wilson Combat, 2022). The Supreme Court has heard cases surrounding this very debate in Heller vs. District of Columbia in 2008. 
+When looking at the history of the United States, the word choice of the 2nd Amendment, and the its time in history, many arguments are formed based on different interpretations of who the 2nd Amendment applies to. GCA arguments point out that the words like "regulated," "militia," and "security of a free State," offer reason to believe that the 2nd Amendment refers to a State's ability to form a militia, and regulate it to the States liking; of which the National Guards gets cited, a collective entity. 2AA arguments goes down the road that the 2nd Amendment targets the individual specifically and that an armed individual (one), and a group of armed individuals (many) make up a militia. Different points get brought up regarding the other Amendments that show up in the Bill of Rights. 2AA highlight an exercise that taking out the 2nd Amendment from the Bill of Rights and then re-reading the Bill of Rights show that all other Amendments attain to the individual citizen (Wilson Combat, 2022). The Supreme Court has heard cases surrounding this very debate in Heller vs. District of Columbia in 2008. 
 
 To provide a brief background on the case, DC made it illegal to carry unregistered firearms, and also prohibited registration of handguns (unless through the chief of police issuing a license of which could be denied). Laws were put in placed that required registered firearms to be unloaded, disassembled, bound to a trigger lock to be rendered inoperable unless in a form of business or legal recreation. Heller worked as a special police officer that carried a handgun on duty but was denied by the chief of police when Heller went to apply for a license. After which, Heller sued DC arguing that they had "violated his Second Amendment right to keep a function firearm in his home without a license" (Oyez). After hearing arguments in court, the Supreme Court Justices came to a 5 - 4 majority in declaring the DC's laws surrounding the permitting process and storage laws violated the 2nd Amendment. Justice Antonin Scalia would give the opinion of the court in a lengthy manner characterizing the history that the Amendment was written in, and how its current implementations relate to today.  
 
@@ -47,6 +47,7 @@ knitr::opts_chunk$set(message = F, warning = F)
 
 ```{r}
 library(readr) ## used to read in and write to a csv file
+library(dplyr)
 
 ```
 
@@ -65,6 +66,7 @@ shotgun <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGu
 
 
 ## Method
+##### Gun Violence Archive (GVA) Data
 With the CSV files now loaded into working data frames, the objective is to create a new column that has the whole address on one line, and clean the data frames up to allow for all the handgun variables to be combined into one large "handgun" data frame to then be exported. After viewing each of the data frames, the main columns that will be preserved will be columns one through seven: 
 
 ```{r}
@@ -129,6 +131,17 @@ Within this map, the States themselves will also be color coded to portray a sta
 
 With the attribute table open, select the "Add" button and scroll down to the bottom where it says "Field" in the "Field Name" column. Insert "legal Status" and in the "Data Type" column, change it to "Text." In the "Length" column, insert 100 to allocate 100 characters to the field. Save the edits and in the top ribbon and exit out of the fields editor. In the attribute table, find the newly created field and start entering the legal status of each state based on the state in the row. Once all states have their legal status filled in, save the data and change the symbology to "Unique Values" based on the field "legal Status." Change the colors to any liking and set the "all other values" box to have either no color or a light gray color. 
 
+##### Center of Disease Control (CDC) Data
+The Center of Disease Control (CDC) also has data regarding firearm deaths in the country. The data is set up where it list the number of deaths that occurred in each state. The following code will show reading in of the data and what variables are in this data set as it is different than that of GVA: 
+
+```{r}
+cdc <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/cdcData2019.csv")
+cdc2019 <- filter(cdc, cdc$YEAR == 2019) ## selects the year 2019 only
+str(cdc2019)
+
+```
+The variables present show the year, state name, the rate of deaths calculated based on 100,000 individuals, and number of deaths (URL is a html source). As analysis at the time is not available to dive into the different class of firearms and which ones were used during which incident, the main thing for us to do is to look at the sum of deaths from the CDC database and from the GVA database. This will take place in the "Results section of this report.  
+
 ## Results
 The maps produced include three total maps that include one class of firearm per map. 
 
@@ -175,15 +188,29 @@ mean(shotgun$`# Victims Killed`)
 mean(shotgun$`# Victims Injured`)
 ```
 
+When comparing the results of the data from the GVA and the data from the CDC, different numbers show up along with different results. When looking at the sum of all deaths from the GVA we see a total death count for 2019 come out to be: 
+```{r}
+sum(handgun$`# Killed`) + sum(rifle$`# Killed`) + sum(shotgun$`# Victims Killed`)
+
+```
+
+When looking at the sum of all detahs from the CDC we see a total death count for 2019 come out to be:
+```{r}
+sum(cdc2019$DEATHS)
+
+```
+
+These two numbers show a few discrepancies in that they are not close to one another in any way. One conclusion to come to is that due to the data collection method of GVA, they are not able to account for incidents that occur and get sent straight to the hospitals due to HIPPA laws that are in place. With only the ability to access public information, GVA's system in place for data collection have no knowledge of knowing it ever happened due to HIPPA's standards. Although With very little parsing of the current data, we have no means of understanding which firearm caused which death. Due to this, further research into the CDC querying system will need to be explored to further understand the breakdown of what firearm was used in which death. Third party sources utilizing greater CDC information mention numbers regarding the usage of handguns, "assault weapons" (rifle was not specifically mentioned), shotguns, and "type not stated" firearms. Handguns accounted for 59% of deaths in the year 2020, "assault weapons" accounted for 3% of deaths, shotguns accounted for 1%  of deaths, and "type not stated" accounted for the remainder 36% of deaths (Gramlich, 2023). Although the maps created in this report do not reflect the whole population of gun deaths according to the CDC, the different rates of what firearms were used in what incident can still support the visual aspects of the map itself. Although difficulties come about when trying to account for the "type not stated" firearm percentage, the underlying percentages by the present data show a large component of gun deaths committed with handguns. 
+
 ## Conclusion
 In a time of politically charged debates surrounding the topic of the 2nd Amendment to the US Constitution, both sides with their arguments often stretch and bend the present data to fit their message. Between GCA and 2AA, apart from playing a numbers game of where the greatest deaths occur in society, discussions of where gun deaths occur are often talked about in the sense of different income levels throughout a state. This map dove into the realm of gun deaths occurring in different states based on the language found in their self defense laws. When looking at the maps and the data that is plotted, it is hard to place whether or not a correlation occurs between different states and their different self defense laws. Bigger cities will have bigger clusters of plots in one area due to the density of people living their but nothing shows an increase in one state to the next. Handguns can be pointed out to have larger circles (meaning more victims killed in one incident) along with many circles (size is varying) throughout a vast number of states. Rifles show that larger circles do show up in a number of states, however the phenomenon appears to be in isolated events not directly located in an urban/large city. Shotguns show primarily the smallest circle throughout the country with few circles being larger than one victim killed being present in urban/large cities. Greater research will need to be sought out to apply numerical numbers to the spread of data depending on their states self defense language and gauge whether or not there is a correlation present. 
-
-When looking at the summary statistics
 
 ## References
 “Castle Doctrine States 2023.” Wisevoter, March 22, 2023. https://wisevoter.com/state-rankings/castle-doctrine-states/#:~:text=In%20total%2C%20twenty%20states%20use,%2C%20West%20Virginia%2C%20and%20Wyoming. 
 
 "District of Columbia v. Heller." Oyez. Accessed May 12, 2023. https://www.oyez.org/cases/2007/07-290.
+
+Gramlich, J. (2023, April 26). What the data says about gun deaths in the U.S. Pew Research Center. https://www.pewresearch.org/short-reads/2023/04/26/what-the-data-says-about-gun-deaths-in-the-u-s/ 
 
 “Gun Violence Archive.” Gun Violence Archive, January 1, 2022. https://www.gunviolencearchive.org/explainer. 
 
@@ -193,3 +220,4 @@ Short answers against Gun Control &amp; how to defend the 2nd Amendment. Critica
 
 Willingham, AJ. “27 Words: Deconstructing the Second Amendment.” CNN, March 28, 2018. https://www.cnn.com/2016/08/10/politics/what-does-the-second-amendment-actually-mean-trnd/index.html. 
 
+Last edit: 5/16/2023

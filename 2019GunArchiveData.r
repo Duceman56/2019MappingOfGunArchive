@@ -1,8 +1,9 @@
 library(readr)
-## library(dplyr)
+library(dplyr)
 # library(tmaptools)
 # library(ggplot2)
 
+# GVA DATA
 ##data importation
 handgun1 <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVADec2nd2019ThroughDec31st2019HandgunIncidents.csv")
 rifle <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/GVAJan1st2019ThroughDec31st2019RifleIncidents.csv")
@@ -63,4 +64,10 @@ str(shotgun)
 write_csv(handgun, file = "//Users//carsond//Desktop//handgun.csv") #"Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DUCECR1126//09 - Final Map Project//handgun.csv")
 write_csv(rifle, file = "//Users//carsond//Desktop//rifle.csv")
 write_csv(shotgun, file = "//Users//carsond//Desktop//shotgun.csv")
+
+# CDC Data
+cdc <- read_csv("https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/data/cdcData2019.csv")
+cdc2019 <- filter(cdc, cdc$YEAR == 2019)
+sum(cdc1$DEATHS)
+
 
