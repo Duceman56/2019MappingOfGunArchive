@@ -26,15 +26,15 @@ This portion highlights step by step instructions of what parameters were utiliz
 #### 1: Query Search
 When in the GVA's website, searching the database can be found here: https://www.gunviolencearchive.org/query. Starting off with the default settings, click "Add a rule" to enable the first parameter to be applied. Using the scroll bar, scroll to where "Guns" appear and select it. Within the "Guns" rule, select the middle box to be (if its not already) "contains" and select the third box to be whichever class of firearms one may desire. Select "Add a rule" again and select "Date." Within the "Date" rule, be sure the middle box is set to "is in" and the "From" and "To" box are set to the desired range (see image 1.0).
 
-![Image 1.0: GVA Query Search](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/image1%2C0.JPG)
+![Image 1.0: GVA Query Search](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/picturesUsedInReport/image1%2C0.JPG)
 
 When ready with all parameters entered, select "Save" to pull up the results. During query searching, GVA's website limits query search's to a maximum of 80 pages for each search (see image 1.1 for example). The date range may need to be reconfigured to ensure that all records are being gathered. When it has been determined that the query search has been successful, select "Export as CSV" to save the file in a comma seperated file format. Good file labeling helps with this step. 
 
-![Image 1.1: Last page of search, notice when "last" is selected we only get to page 68](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/image1%2C1Example.JPG)
+![Image 1.1: Last page of search, notice when "last" is selected we only get to page 68](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/picturesUsedInReport/image1%2C1Example.JPG)
 
 For this project, all three class of firearms were query searched for. Rifle and shotgun saw all incidents combined into their own seperate CSV file; one file for rifle and one file for shotgun. Incidents involving handguns would require six separate CSV files for all to be accounted for properly. Image 1.2 shows the naming convention of the separate CSV files.
 
-![Image 1.2: Naming Conventions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/image1%2C2FileNaming.JPG)
+![Image 1.2: Naming Conventions](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/picturesUsedInReport/image1%2C2FileNaming.JPG)
 
 After all CSV files have been downloaded and loaded into a known folder somewhere, open up RStudio. 
 
@@ -121,9 +121,9 @@ write_csv(shotgun, file = "Q://StudentCoursework//Zeitler//GEOG.280.001.2235//DU
 
 With our exported CSV files in a folder on our machine, open up ArcGIS Pro and sign in with your account. Create a new map project, name and store it in the same folder as the exported CSV files are located. Load up the main base map in ArcGIS Pro and within the "Analysis" tab, click "Tools" to open up the geoprocessing tools. In the search bar, type in "geocoding." Side note, this processing takes 40 credits per 1,000 addresses geocoded. When buying credits on ESRI's website, 1000 credits cost $120. When working with the geocoding tool, for "Input Table," click the yellow folder and find the first exported CSV file to be geocoded; click "OK." For "Input Address Locator, the default ESRI locator will be used. Click the yellow folder and find where it says "Project" on the left side of the window and click into the "Locators" folder (see image 2.0). Select the "ArcGIS World Geocoding Service" and select "OK." For "Input Address Fields" change it from "Multiple Field" to "Single Field" and find the column "wholeAddress" in the "Single Line Input" box. For the country, check the box that says "United States" and ensure that "Preferred Location Type" is set to "Address location." When all is done the geocoding tool should be set up similar to what image 2.1 looks like.
 
-![Image 2.0: Finding the Address Locator](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/image2%2C0FindingLocator.JPG)
+![Image 2.0: Finding the Address Locator](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/picturesUsedInReport/image2%2C0FindingLocator.JPG)
 
-![Image 2.1: Final Setup of Geocoding Tool](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/iamge2%2C1GeocodingTool.JPG)
+![Image 2.1: Final Setup of Geocoding Tool](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/picturesUsedInReport/iamge2%2C1GeocodingTool.JPG)
 
 With a new layer in the "Contents" pane of the geocoded addresses, graduate colors was chosen for the symbology of how the data will be classified and mapped. Final results for the maps will be shown in the "Results" section of this report.
 
@@ -145,11 +145,11 @@ The variables present show the year, state name, the rate of deaths calculated b
 ## Results
 The maps produced include three total maps that include one class of firearm per map. 
 
-![Map 1: Handgun Deaths in the United States, 2019](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/handgunDeathsInUsa2019.png)
+![Map 1: Handgun Deaths in the United States, 2019](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/picturesUsedInReport/handgunDeathsInUsa2019.png)
 
-![Map 2: Rifle Deaths in the United States, 2019](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/rifleDeathsInUsa2019.png)
+![Map 2: Rifle Deaths in the United States, 2019](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/picturesUsedInReport/rifleDeathsInUsa2019.png)
 
-![Shotgun Deaths in the United States, 2019](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/pictures/shotgunDeathsInUsa2019.png)
+![Shotgun Deaths in the United States, 2019](https://raw.githubusercontent.com/Duceman56/2019MappingOfGunArchive/main/picturesUsedInReport/shotgunDeathsInUsa2019.png)
 
 #### Summary Statistics for Handgun
 ```{r}
